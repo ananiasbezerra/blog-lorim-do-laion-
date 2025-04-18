@@ -1,5 +1,5 @@
 body { font-family: Arial; margin: 0; background: #f9f9f9; color: #333; }
-header { background: #002f6c; color: white; text-align: center; padding: 20px; }
+header { background: #002f6c; color: white; text-align: center; padding: 20px; position: sticky; top: 0; z-index: 999; }
 .logo { width: 100px; margin-bottom: 10px; }
 .autor { font-style: italic; margin-top: -10px; }
 nav a { color: white; margin: 0 10px; font-weight: bold; text-decoration: none; }
