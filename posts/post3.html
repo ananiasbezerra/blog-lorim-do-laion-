@@ -1,4 +1,34 @@
-<html><head><meta charset="UTF-8"><title>Post 3</title><link rel="stylesheet" href="../style.css"></head>
-<body><header><img src="../img/lorim-logo.jpg" class="logo" /><h1>Blog do Fortaleza EC</h1><p class="autor">Por Lorim do Laion</p><nav><a href="../index.html">Início</a></nav></header>
-<main><article><h2>Fortaleza perde para o Vitória e enfrenta cobranças</h2><p class="data">Publicado em 17 de abril de 2025</p><p>Em um jogo complicado, o Fortaleza foi superado pelo Vitória por 2x1 fora de casa. Na chegada ao aeroporto Pinto Martins, em Fortaleza, torcedores demonstraram insatisfação com o desempenho da equipe e realizaram cobranças à diretoria e aos jogadores.</p></article></main>
-<footer><p>&copy; 2025 Blog do Fortaleza EC</p></footer></body></html>
+<html><head><meta charset="UTF-8"><title>Post 3</title>
+<link rel="stylesheet" href="../style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body><header><img src="../img/lorim-logo.jpg" class="logo" />
+<h1>Blog do Fortaleza EC</h1><p class="autor">Por Lorim do Laion</p><nav><a href="../index.html">Início</a></nav></header>
+<main><article><h2>Fortaleza perde para o Vitória e enfrenta cobranças</h2>
+<p class="data">Publicado em 17 de abril de 2025</p>
+<p>O Fortaleza foi superado pelo Vitória por 2x1 fora de casa. Na chegada ao aeroporto Pinto Martins, torcedores fizeram cobranças.</p>
+<h3>💬 Comentários</h3>
+<form><input type="text" placeholder="Seu nome" required><br>
+<textarea rows="3" placeholder="Escreva seu comentário..." required></textarea><br>
+<button onclick="alert('Comentário enviado!')">Enviar</button></form>
+<p><a href="https://wa.me/?text=Veja%20esse%20post:%20https://fortaleza1918.github.io/blog-lorim-do-laion-/posts/post3.html" target="_blank">📤 Compartilhar no WhatsApp</a></p>
+<p><button id="likeBtn">👍 Curtir</button> <span id="likeCount">0</span></p>
+</article></main><footer><p>&copy; 2025 Blog do Fortaleza EC</p></footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const pageId = window.location.pathname;
+    const btn = document.getElementById("likeBtn");
+    const counter = document.getElementById("likeCount");
+    let likes = localStorage.getItem("likes_" + pageId);
+    if (!likes) {
+      likes = 0;
+      localStorage.setItem("likes_" + pageId, likes);
+    }
+    counter.textContent = likes;
+    btn.addEventListener("click", function () {
+      likes++;
+      localStorage.setItem("likes_" + pageId, likes);
+      counter.textContent = likes;
+    });
+  });
+</script>
+</body></html>
