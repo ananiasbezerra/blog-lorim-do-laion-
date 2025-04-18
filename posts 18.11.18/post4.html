@@ -1,0 +1,67 @@
+<html><head><meta charset="UTF-8"><title>Fortaleza se prepara para encarar o Palmeiras no domingo</title><link rel="stylesheet" href="../style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body><header class="sticky"><img src="../img/lorim-logo.jpg" class="logo" />
+<h1>Blog do Fortaleza EC</h1><p class="autor">Por Lorim do Laion</p><nav><a href="../index.html">Início</a></nav></header>
+<main><article><h2>Fortaleza se prepara para encarar o Palmeiras no domingo</h2><p class="data">Publicado em 18 de abril de 2025</p>
+<p>O Fortaleza se prepara para o confronto contra o Palmeiras buscando recuperação após derrota.</p>
+<h3>💬 Comentários</h3><form id="commentForm"><input id="name" type="text" placeholder="Seu nome" required><br>
+<textarea id="comment" rows="3" placeholder="Escreva seu comentário..." required></textarea><br>
+<button type="submit">Enviar</button></form>
+<div id="commentList"></div>
+<p><a href="https://wa.me/?text=Veja%20esse%20post:%20https://fortaleza1918.github.io/blog-lorim-do-laion-/posts/post4.html" target="_blank">📤 Compartilhar no WhatsApp</a></p>
+<p><button id="likeBtn4">👍 Curtir</button> <span id="likeCount4">0</span></p>
+<script>
+  const btn = document.getElementById("likeBtn4");
+  const counter = document.getElementById("likeCount4");
+  let likes = localStorage.getItem("likes_post4") || 0;
+  counter.textContent = likes;
+  btn.addEventListener("click", () => {
+    likes++;
+    localStorage.setItem("likes_post4", likes);
+    counter.textContent = likes;
+  });
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDtlJIdpQWjHLx6TSuexBlIxE2WRZvVI9o",
+    authDomain: "blog-lorim-do-laion.firebaseapp.com",
+    projectId: "blog-lorim-do-laion",
+    storageBucket: "blog-lorim-do-laion.firebasestorage.app",
+    messagingSenderId: "318397540680",
+    appId: "1:318397540680:web:dccb239d7a37ca8b71eb7d",
+    measurementId: "G-2DNM2EKWW7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  const form = document.getElementById("commentForm");
+  const nameInput = document.getElementById("name");
+  const commentInput = document.getElementById("comment");
+  const list = document.getElementById("commentList");
+  const postId = location.pathname.split("/").pop().replace(".html", "");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    push(ref(db, "comments/" + postId), {
+      name: nameInput.value,
+      comment: commentInput.value
+    });
+    nameInput.value = "";
+    commentInput.value = "";
+  });
+
+  onValue(ref(db, "comments/" + postId), (snapshot) => {
+    list.innerHTML = "";
+    snapshot.forEach(child => {
+      const data = child.val();
+      const el = document.createElement("p");
+      el.innerHTML = `<strong>${data.name}</strong>: ${data.comment}`;
+      list.appendChild(el);
+    });
+  });
+</script>
+</article></main><footer><p>&copy; 2025 Blog do Fortaleza EC</p></footer></body></html>
