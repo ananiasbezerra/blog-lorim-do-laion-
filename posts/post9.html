@@ -1,0 +1,75 @@
+<html><head><meta charset="UTF-8"><title>Fortaleza vence por W.O. após confusão com o Colo-Colo</title>
+<link rel="stylesheet" href="../style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body><header class="sticky"><img src="../img/lorim-logo.jpg" class="logo" />
+<h1>Blog do Fortaleza EC</h1><p class="autor">Por Lorim do Laion</p>
+<nav><a href="../index.html">Início</a> <a href="../painel.html">Painel</a></nav></header>
+<main><article>
+<h2>Fortaleza vence por W.O. após confusão com o Colo-Colo e se prepara para o reencontro no Castelão</h2>
+<p class="data">Publicado em 3 de maio de 2025</p>
+<p>A Conmebol confirmou a <strong>vitória do Fortaleza por W.O.</strong> após a partida contra o Colo-Colo ser interrompida por <strong>invasão de campo</strong> no Chile. O Tricolor vencia por 2x1 no momento da confusão e garantiu os três pontos no grupo da Libertadores.</p>
+<p>Agora, o time cearense <strong>se prepara para encarar novamente o Colo-Colo</strong>, desta vez na <strong>Arena Castelão, na próxima terça-feira</strong>, em um duelo decisivo para as pretensões do clube na competição.</p>
+
+<h3>💬 Comentários</h3>
+<form id="commentForm"><input id="name" type="text" placeholder="Seu nome" required><br>
+<textarea id="comment" rows="3" placeholder="Escreva seu comentário..." required></textarea><br>
+<button type="submit">Enviar</button></form>
+<div id="commentList"></div>
+
+<p><a href="https://wa.me/?text=Veja%20esse%20post:%20https://fortaleza1918.github.io/blog-lorim-do-laion-/posts/post9.html" target="_blank">📤 Compartilhar no WhatsApp</a></p>
+<p><button id="likeBtn9">👍 Curtir</button> <span id="likeCount9">0</span></p>
+<script>
+  const btn = document.getElementById("likeBtn9");
+  const counter = document.getElementById("likeCount9");
+  let likes = localStorage.getItem("likes_post9") || 0;
+  counter.textContent = likes;
+  btn.addEventListener("click", () => {
+    likes++;
+    localStorage.setItem("likes_post9", likes);
+    counter.textContent = likes;
+  });
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDtlJIdpQWjHLx6TSuexBlIxE2WRZvVI9o",
+    authDomain: "blog-lorim-do-laion.firebaseapp.com",
+    projectId: "blog-lorim-do-laion",
+    storageBucket: "blog-lorim-do-laion.firebasestorage.app",
+    messagingSenderId: "318397540680",
+    appId: "1:318397540680:web:dccb239d7a37ca8b71eb7d",
+    measurementId: "G-2DNM2EKWW7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  const form = document.getElementById("commentForm");
+  const nameInput = document.getElementById("name");
+  const commentInput = document.getElementById("comment");
+  const list = document.getElementById("commentList");
+  const postId = location.pathname.split("/").pop().replace(".html", "");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    push(ref(db, "comments/" + postId), {
+      name: nameInput.value,
+      comment: commentInput.value
+    });
+    nameInput.value = "";
+    commentInput.value = "";
+  });
+
+  onValue(ref(db, "comments/" + postId), (snapshot) => {
+    list.innerHTML = "";
+    snapshot.forEach(child => {
+      const data = child.val();
+      const el = document.createElement("p");
+      el.innerHTML = `<strong>${data.name}</strong>: ${data.comment}`;
+      list.appendChild(el);
+    });
+  });
+</script>
+</article></main><footer><p>&copy; 2025 Blog do Fortaleza EC</p></footer></body></html>
